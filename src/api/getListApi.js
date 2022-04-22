@@ -28,6 +28,7 @@ export const getArticleById = articleId =>{
     })
 }
 
+
 // 用户关注
 export const addFollow= target =>{
     return request({
@@ -50,6 +51,32 @@ export const cancelFollow= target =>{
     })
 }
 
+// 获取用户文章列表
+export const getCurUserArticles = (params)=>{
+    return request({
+        method:"GET",
+        url:`/v1_0/user/articles`,
+        params
+    })
+}
+
+// 获取用户收藏列表
+export const getCollerArticles = (params)=>{
+    return request({
+        method:"GET",
+        url:`/v1_0/article/collections`,
+        params
+    })
+}
+
+// 查看用户历史记录列表
+export const getHistoryArticles = (params)=>{
+    return request({
+        method:"GET",
+        url:`/v1_0/user/histories`,
+        params
+    })
+}
 
 // export const addFollow = target =>{
 //     return request({

@@ -26,7 +26,7 @@
             </p>
             <div class="bottom-info">
                 <span class="comment-pubdate">{{comment.pubdate | relativeTime}}</span>
-                <van-button class="reply-btn" round @click="showPopup()">回复 {{comment.reply_count}}</van-button>
+                <van-button class="reply-btn" round @click="showPopup(comment)">回复 {{reply_count? reply_count:comment.reply_count}}</van-button>
             </div>
         </div>
     </van-cell>
@@ -34,6 +34,8 @@
 
 <script>
 import { addCommentLike, deleteCommentLike } from "@/api/comment";
+
+import { mapMutations}  from "vuex"
 
 export default {
     name: "CommentItem",
@@ -43,6 +45,9 @@ export default {
             type: Object,
             require: true,
         },
+        reply_count:{
+            default:null
+        }
     },
     data() {
         return {
@@ -50,7 +55,9 @@ export default {
             show: false,
         };
     },
+
     methods: {
+        ...mapMutations(["setCurment"]),
         async onComment() {
             this.comLoading = true;
             try {
@@ -67,7 +74,10 @@ export default {
             }
             this.comLoading = false;
         },
-        showPopup() {
+        showPopup(data) {
+            // console.log(data.content);
+            this.setCurment(data)
+
             this.$emit("show-ReplyPopup", this.comment);
             this.$emit("show-inserReplyPopup", this.comment);
         },
@@ -107,7 +117,8 @@ export default {
         align-items: center;
     }
     .reply-btn {
-        width: 135px;
+        // width: 135px;
+        max-width: auto;
         height: 48px;
         line-height: 48px;
         font-size: 21px;

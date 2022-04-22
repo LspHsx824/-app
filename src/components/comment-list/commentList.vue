@@ -1,5 +1,6 @@
 <template>
     <div>
+        <slot></slot>
         <van-list
             v-model="loading"
             :finished="finished"
@@ -15,7 +16,7 @@
                 :comment="item"
             />
         </van-list>
-        <!-- 评论回复弹出层 -->
+        <!-- 一级评论回复弹出层 -->
         <van-popup
             v-model="Popupshow"
             closeable
@@ -23,7 +24,7 @@
             position="bottom"
             :style="{ height: '85%' }"
         >
-            <ReplyPopup v-if="Popupshow" :comment="curComment"></ReplyPopup>
+            <ReplyPopup v-if="Popupshow" @updateReply="curReply" :articleId="source" :comment="curComment"></ReplyPopup>
         </van-popup>
     </div>
 </template>
@@ -53,13 +54,14 @@ export default {
     },
     props: {
         source: {
-            type: [Number, String, Object],
+            type: [Number, String, Object], // 当前文章id
             require: true,
         },
         newComList: {
             type: Array,
             default: () => [],
         },
+        
     },
     computed: {
         list() {
@@ -69,9 +71,9 @@ export default {
     created() {
         this.onLoad();
     },
-    updated() {
-        this.onLoad();
-    },
+    // updated() {
+        // this.onLoad();
+    // },
     methods: {
         async onLoad() {
             // 异步更新数据
@@ -103,9 +105,14 @@ export default {
             }
         },
         showReply(data) {
+            console.log(data);
             this.Popupshow = true;
             this.curComment = data;
         },
+        curReply(data){
+            console.log(data);
+            // console.log(this.curComment);
+        }
     },
 };
 </script>

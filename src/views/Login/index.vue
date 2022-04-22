@@ -95,7 +95,11 @@ export default {
                 this.$toast.success("登陆成功");
                 
                 this.$store.commit("setUser",data.data)
-                this.$router.push("/index/user")
+                // this.$router.push("/index/user")
+                // console.log(this.$route.query);
+                this.$router.push({
+                    path:this.$route.query.ReturnUrl || "/index/user",
+                })
 
             }catch(err){
                 if (err.response.status === 400) {

@@ -3,7 +3,13 @@
         <!-- 用户登录注册 -->
         <div v-if="!user" class="header not-login">
             <div class="login">
-                <img src="../../assets/mobile.png" alt="登录" @click="$router.push('/login')" />
+                <img src="../../assets/mobile.png" alt="登录" 
+                    @click="$router.push({
+                        name:'login',
+                        query:{
+                            ReturnUrl:'/index/user'
+                        }
+                    })" />
                 <span class="text">登录 / 注册</span>
             </div>
         </div>
@@ -53,23 +59,28 @@
         </div>
 
         <!-- 自定义功能格 -->
-        <van-grid :column-num="2" clickable>
-            <van-grid-item text="收藏" class="grid-item">
+        <van-grid :column-num="3" clickable>
+            <van-grid-item text="收藏" class="grid-item" to="/user-article/mylike">
                 <template #icon>
                     <i class="ranran icon-shoucang"></i>
                 </template>
             </van-grid-item>
-            <van-grid-item text="历史" class="grid-item history">
+            <van-grid-item text="历史" class="grid-item history" to="/user-article/history">
                 <template #icon>
                     <i class="ranran icon-lishi"></i>
+                </template>
+            </van-grid-item>
+            <van-grid-item text="作品" class="grid-item history" to="/user-article">
+                <template #icon>
+                    <i class="ranran icon-zuopin"></i>
                 </template>
             </van-grid-item>
         </van-grid>
 
         <!-- 操作面板 -->
         <van-cell-group class="action-card">
-            <van-cell icon="edit"  title="编辑资料" is-link :to="{name:'profile'}" />
-            <van-cell icon="chat-o" title="小思同学" is-link />
+            <van-cell icon="edit"  :title="user? '编辑资料':'消息通知'" is-link :to="{name:'profile'}" />
+            <van-cell icon="chat-o" title="小思同学" is-link :to="{name:'user-chat'}" />
         </van-cell-group>
         <van-cell v-if="user" @click="onLogout" class="text3" icon="warning-o" title="退出登录" is-link />
     </div>
@@ -204,6 +215,10 @@ export default {
         color: #ff9d1d;
     }
 }
+
+
+
+
 
 
 </style>

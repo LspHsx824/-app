@@ -19,8 +19,9 @@
          <!-- 回复评论弹出层 -->
         <van-popup v-model="isPostComment" position="bottom">
             <CommentPost
-                :commentID="curcomment.com_id"
+                :commentID="curComment.com_id"
                 :id="curcomment.com_id"
+                :curComName="curComment.aut_name"
                 @post-succes="onPostSucces"
             ></CommentPost>
         </van-popup>
@@ -63,6 +64,9 @@ export default {
         },
         curcomment:{
             require:true
+        },
+        articleId:{
+            default:null
         }
     },
     computed: {
@@ -75,11 +79,6 @@ export default {
             // }
             
         },
-    },
-    created() {
-        // console.log(this.list);
-        // console.log(222);
-        // this.onLoad();
     },
     methods: {
         async onLoad() {
@@ -109,12 +108,13 @@ export default {
             }
         },
         showReply(data) {
-            // console.log("aaaa");
+            // console.log(data);
             this.isPostComment = true
             this.Popupshow = true;
             this.curComment = data;
         },
         onPostSucces(data){
+            // console.log(222);
             this.curComment = this.curComment?.comment || this.curComment
             this.replyComment = { comment:data.new_obj,old:this.curComment,reply:true}
             this.list.push(this.replyComment)

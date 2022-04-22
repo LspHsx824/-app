@@ -7,7 +7,7 @@
       autosize
       type="textarea"
       maxlength="50"
-      placeholder="请输入留言"
+      :placeholder="curComName ? `回复：${curComName}`: '优质评论会优先显示'"
       show-word-limit
     />
     <van-button
@@ -30,6 +30,9 @@ export default {
           require:true
       },
       commentID:{
+        default:null
+      },
+      curComName:{
         default:null
       }
   },

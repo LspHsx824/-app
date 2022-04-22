@@ -20,7 +20,8 @@ export default {
     props: {
         value: {
             type: Boolean,
-            required: true,
+            default:true,
+            // required: true,
         },
         articleid: {
             type: [Number, String, Object],
@@ -56,5 +57,9 @@ export default {
 .collored {
     color: #ffa500;
 }
+
+
+
+
 </style>
 

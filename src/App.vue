@@ -4,17 +4,13 @@
         <keep-alive>
           <router-view v-if="$route.meta.keepAlive" />
       </keep-alive>
+
+        <!-- <keep-alive :include="cachePages"> -->
+          <!-- <router-view  /> -->
+      <!-- </keep-alive> -->
       
       <router-view v-if="!$route.meta.keepAlive" />
 
-        <!-- <van-tabbar v-model="active" > -->
-        <!-- <route-link  class="van-tabbar-item ">
-                <van-tabbar-item  to="/" icon="home-o">首页</van-tabbar-item>
-            </route-link>
-            <route-link  class="van-tabbar-item ">
-                <van-tabbar-item to="/user" icon="user-o">我的</van-tabbar-item>
-        </route-link>-->
-        <!-- </van-tabbar> -->
     </div>
 </template>
 
@@ -24,10 +20,19 @@ export default {
     data() {
         return {
             active: 0,
+            cachePages:[]
         };
     },
+    created(){
+        // console.log(222);
+        // this.$store.commit("addCachePage","MyIndex")
+        // this.cachePages = this.$store.state.cachePages
+        // console.log(this.$store.state.cachePages);
+        // this.$store
+    }
+    
 };
 </script>
 
-<style lang="less" scope>
+<style lang="less" scoped>
 </style>

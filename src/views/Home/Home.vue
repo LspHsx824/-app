@@ -97,10 +97,11 @@ export default {
         this.loadData();
     },
     // 页面被激活
-    // activated(){
-    //     this.fn = this.recordTopHandler()
-    //     window.addEventListener('scroll', this.fn)
-    // },
+    activated(){
+        this.loadData()
+        // this.fn = this.recordTopHandler()
+        // window.addEventListener('scroll', this.fn)
+    },
     // deactivated(){
     //     window.removeEventListener('scroll', this.fn)
     // },
@@ -114,7 +115,6 @@ export default {
     methods: {
         // 获取频道列表数据
         async loadData() {
-
             // 用户已登录就 获取线上后台数据库的数据
             if( this.user ){
                 try {
@@ -128,6 +128,7 @@ export default {
                 const localData = getItem("localChannel")
                 if( localData ){
                      this.channelData = localData;
+                    //  console.log(this.channelData);
                 }else{
                     // 如果本地数据不存在，则获取 推荐频道 列表
                     const { data } = await getData()

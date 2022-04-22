@@ -35,7 +35,6 @@ export default {
     },
     // 页面被激活
     activated() {
-
         this.$refs.scrolllist.scrollTop = this.top
         this.fn = this.recordTopHandler();
         this.$refs.scrolllist.addEventListener("scroll",this.fn );
@@ -61,13 +60,13 @@ export default {
     },
     props: ["item"],
     watch:{
-        list:{
-            handler(){
-                if(this.$refs.listItem){
-                    this.imageLazy()
-                }
-            }
-        }
+        // list:{
+            // handler(){
+                // if(this.$refs.listItem){
+                    // this.imageLazy()
+                // }
+            // }
+        // }
     },
     methods: {
         imageLazy(){

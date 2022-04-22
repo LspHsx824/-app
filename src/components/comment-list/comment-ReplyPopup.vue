@@ -1,16 +1,18 @@
 <template>
     <div class="reply-container">
-        <header>{{comment.reply_count}} 条回复</header>
-        <CommontItem @show-inserReplyPopup="showReply" :comment="comment"></CommontItem>
+        <!-- // 一级评论 -->
+        <header>{{reply_count}} 条回复</header>
+        <CommontItem @show-inserReplyPopup="showReply" :reply_count="reply_count"  :comment="comment"></CommontItem>
         <h6>全部回复</h6>
-        <myCommontList :newComList="list" :curcomment="comment"></myCommontList>
+        <myCommontList :newComList="list"  :articleId="articleId" :curcomment="comment"></myCommontList>
 
-        <!-- 回复评论弹出层 -->
+        <!-- 一级评论 回复评论弹出层 -->
         <van-popup v-model="isPostComment" position="bottom">
             <CommentPost
-                :commentID="comment.com_id"
+                :commentID="articleId" 
                 :id="comment.com_id"
                 @post-succes="onPostSucces"
+                :curComName="curComName"
             ></CommentPost>
         </van-popup>
     </div>
@@ -34,11 +36,16 @@ export default {
             type: Object,
             require: true,
         },
+        articleId:{
+            type:[Number,String]
+        }
     },
     data() {
         return {
             list: [],
             isPostComment: false,
+            curComName:null,
+            reply_count:this.comment.reply_count
         };
     },
     created() {
@@ -60,11 +67,15 @@ export default {
             // }
         },
         showReply(data) {
+            // console.log("222");
             // console.log(data);
+            this.curComName = data.aut_name
             this.isPostComment = true;
         },
         onPostSucces(data) {
             // console.log("-=-=-",data);
+            this.$emit("updateReply",data)
+            this.reply_count++
             this.isPostComment = false;
             this.list.unshift(data.new_obj)
         },

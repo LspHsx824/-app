@@ -1,12 +1,17 @@
 <template>
     <div class="item-container">
-        <van-cell :to="`/article/${article.art_id}`">
+        <van-cell :to="`/article/${article.art_id}`" >
             <template #title>
                 <div class="title-box">
                     <!-- 标题 -->
                     <span class="title van-multi-ellipsis--l2">{{ article.title }}</span>
                     <!-- 单张图片 -->
                     <!-- :src="article.cover.images[0]" -->
+                    <!-- <img
+                        v-lazy ="article.cover.images[0]"
+                        class="thumb van-image__img"
+                        v-if="article.cover.type === 1"
+                    /> -->
                     <img
                         v-lazy ="article.cover.images[0]"
                         class="thumb van-image__img"
@@ -48,6 +53,7 @@
                         {{ article.pubdate | relativeTime }}
                     </span>
                 </div>
+                
             </template>
 
             <!-- <template #right-icon> -->
@@ -55,9 +61,13 @@
             <!-- <van-icon name="cross" /> -->
             <!-- </template> -->
         </van-cell>
+        <!-- <slot></slot> -->
     </div>
 </template>
 <script>
+
+import { Lazyload } from "vant"
+
 export default {
     name: "article-item",
     props: {
@@ -67,6 +77,7 @@ export default {
         },
     },
     created() {
+        // console.log(this.article);
         // console.log(this.atricle);
         // console.log(this.article.cover.images);
         // console.dir(JSON.stringify(this.article));
@@ -124,4 +135,9 @@ export default {
 img{
     object-fit: cover;
 }
+
+
+
+
+
 </style>
