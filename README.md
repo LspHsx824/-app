@@ -23,6 +23,13 @@ yarn lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### 这是一个基于 vue+vuex+vue-router+vant 开发的一个 移动端博客 app
+
+### 技术栈
+vue2 + vuex + vue-router +  +vant + webpack + ES6/7 + dayjs+ less+ flex + axios+localstorage
+
+## 功能实现：首页， 个人中心，文章列表，搜索列表，小思同学，历史和收藏模块
+
 ### 主页 main的 推荐内容
 ![image](https://user-images.githubusercontent.com/81803045/163793742-61022c9e-eb3b-4444-8740-e8a99eb29906.png)
 
@@ -53,5 +60,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ![image](https://user-images.githubusercontent.com/81803045/163794905-38afebdd-37ab-4ba5-9830-41fe95a42227.png)
 ![image](https://user-images.githubusercontent.com/81803045/163795039-578ffac0-9b23-4841-a74e-d822aac6ee48.png)
 
+###  实时通讯机器人
+![image](https://user-images.githubusercontent.com/81803045/164701861-106681ba-39ef-4f56-9af7-af99a793289f.png)
 
+
+###  个人中心模块完善 收藏/游览历史/作品 模块
+
+![image](https://user-images.githubusercontent.com/81803045/164701802-59b0518a-5448-4900-8a73-36e442034022.png)
 
